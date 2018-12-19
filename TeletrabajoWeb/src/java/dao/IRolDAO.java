@@ -8,7 +8,7 @@ import modelo.Rol;
  *
  * @author Ignacio
  */
-public interface RolDAO {
+public interface IRolDAO {
 
     public void insertarRol(Rol rol);
     public ArrayList<Rol> listarRol();
