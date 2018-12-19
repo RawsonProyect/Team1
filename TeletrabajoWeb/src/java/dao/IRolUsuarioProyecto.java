@@ -1,10 +1,7 @@
 package dao;
 
 import java.util.ArrayList;
-import modelo.Proyecto;
-import modelo.Rol;
 import modelo.RolUsuarioProyecto;
-import modelo.Usuario;
 
 /**
  *
