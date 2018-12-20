@@ -15,6 +15,7 @@ public interface IRolDAO {
     public Rol obtenerRolPorId(int id);
     public void actualizarRol(Rol rol);
     public void eliminarRol(Rol rol);
-    public void ponerPermisoARol(Rol r, Permiso p);
-    public void quitarPermisoARol(Rol r, Permiso p);
+    public void asignarPermisoARol(Rol r, Permiso p);
+    public void desasignarPermisoARol(Rol r, Permiso p);
+    public ArrayList<Permiso> listarPermisoRol(Rol r);
 }
