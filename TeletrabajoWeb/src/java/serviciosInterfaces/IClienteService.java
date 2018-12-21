@@ -3,7 +3,7 @@
  To change this template file, choose Tools | Templates
  and open the template in the editor.
  */
-package controlador;
+package serviciosInterfaces;
 
 import java.util.ArrayList;
 import modelo.Cliente;
@@ -12,11 +12,11 @@ import modelo.Usuario;
 
 /**
 
- @author LUCIA
+ @author Arlen
  */
-public interface IClienteDao
+public interface IClienteService
 {
-    public ArrayList<Cliente>listarClientes();
+ public ArrayList<Cliente>listarClientes();
     public Cliente obtenerClientePorID(int id);
     public Cliente insertarCliente(Cliente c);
     public void actualizarCliente(Cliente c);
@@ -24,6 +24,5 @@ public interface IClienteDao
     public void asignarUsuario(Usuario u);
     public void desasignarUsuario(Usuario u);
     public void asignarProyecto(Proyecto p);
-    public void desasignarProyecto(Proyecto p);
-    
+public void desasignarProyecto(Proyecto p);  
 }

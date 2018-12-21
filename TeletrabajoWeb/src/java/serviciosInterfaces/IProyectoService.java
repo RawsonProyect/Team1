@@ -3,7 +3,7 @@
  To change this template file, choose Tools | Templates
  and open the template in the editor.
  */
-package controlador;
+package serviciosInterfaces;
 
 import java.util.ArrayList;
 import modelo.Archivo;
@@ -12,9 +12,9 @@ import modelo.Requisito;
 
 /**
 
- @author LUCIA
+ @author Arlen
  */
-public interface IProyectoDao
+public interface IProyectoService
 {
     public ArrayList<Proyecto> listarProyectos();
     public Proyecto obtenerProyectoPorID(int id);
@@ -24,7 +24,9 @@ public interface IProyectoDao
     public void asignarRequisito(Requisito r);
     public void desasignarRequisito(Requisito r);
     public void asignarArchivo(Archivo arch);
-    public void desasignarArchivo(Archivo arch);
-  
+public void desasignarArchivo(Archivo arch); 
+    
+    
+    
     
 }

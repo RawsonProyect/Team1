@@ -5,6 +5,8 @@
  */
 package controlador;
 
+import org.hibernate.Session;
+
 /**
 
  @author Arlen
@@ -17,7 +19,12 @@ public class NewMain
      */
     public static void main(String[] args)
     {
-        // TODO code application logic here
+       Session s = HibernateUtil.getSessionFactory().getCurrentSession();
+       s.beginTransaction();
+       
+        
+        
+        
     }
     
 }

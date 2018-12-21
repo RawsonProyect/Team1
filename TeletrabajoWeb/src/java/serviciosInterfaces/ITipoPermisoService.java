@@ -3,7 +3,7 @@
  To change this template file, choose Tools | Templates
  and open the template in the editor.
  */
-package controlador;
+package serviciosInterfaces;
 
 import java.util.ArrayList;
 import modelo.Tipopermiso;
@@ -12,13 +12,12 @@ import modelo.Tipopermiso;
 
  @author Arlen
  */
-public interface ITipoPermiso
+public interface ITipoPermisoService
 {
-     public ArrayList<Tipopermiso>listarTipopermisos();
+   public ArrayList<Tipopermiso>listarTipopermisos();
     public Tipopermiso obtenerTipopermisoPorID(int id);
     public Tipopermiso insertarTipopermiso(Tipopermiso c);
     public void actualizarTipopermiso(Tipopermiso c);
     public void eliminarTipopermiso(int id);
-    
-    
+  
 }
