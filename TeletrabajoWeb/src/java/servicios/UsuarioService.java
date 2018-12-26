@@ -40,7 +40,7 @@ public class UsuarioService implements IUsuarioService
         }
         catch(HibernateException e)
         {
-           new InstanceException();
+          throw new InstanceException();
                    
         }
         

@@ -5,38 +5,66 @@
  */
 package servicios;
 
-
+import controlador.HibernateUtil;
+import dao.RolDao;
+import excepciones.DuplicateInstance;
 import excepciones.InstanceException;
 import java.util.ArrayList;
 import javax.management.InstanceNotFoundException;
 import modelo.Rol;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import serviciosInterfaces.IRolService;
 
 /**
-
- @author Arlen
+ *
+ * @author Arlen
  */
-public class RolService implements IRolService
-{
+public class RolService implements IRolService {
+
+    protected Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+    protected Transaction t = session.beginTransaction();
+    RolDao dao = new RolDao();
     @Override
-    public Rol insertarRol(Rol r) throws InstanceException
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void insertarRol(Rol r) throws DuplicateInstance, InstanceException {
+        try {
+            if (!(dao.getByParameter("nombre", r.getNombre(), session)).isEmpty()) {
+                throw new DuplicateInstance();
+            }
+            dao.save(r);
+        } catch (HibernateException e) {
+            throw new InstanceException();
+        }
     }
     @Override
-    public void actualizarRol(Rol r) throws InstanceException
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void actualizarRol(Rol r) throws InstanceException {
+        try {
+            dao.save(r);
+            dao.update(r);
+        } catch (HibernateException e) {
+            throw new InstanceException();
+        }
     }
     @Override
-    public Rol obtenerRolPorId(int id) throws InstanceNotFoundException
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Rol obtenerRolPorId(int id) throws InstanceNotFoundException {
+
+        try {
+            return dao.findbyId(id);
+        } catch (Exception e) {
+            throw new InstanceNotFoundException();
+        }
+
     }
     @Override
-    public ArrayList<Rol> getRoles() throws InstanceException
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList<Rol> getRoles() throws InstanceException {
+        ArrayList list = null;
+        try {
+            list = (ArrayList) dao.findAll();
+        } catch (HibernateException ex) {
+            new InstanceException();
+        }
+        return list;
     }
-    
+
 }
