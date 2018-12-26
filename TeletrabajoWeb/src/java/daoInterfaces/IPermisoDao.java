@@ -1,6 +1,9 @@
 package daoInterfaces;
 
+import excepciones.InstanceException;
+import java.util.List;
 import modelo.Permiso;
+import org.hibernate.Session;
 
 /**
  *
@@ -8,5 +11,5 @@ import modelo.Permiso;
  */
 public interface IPermisoDao extends IGenericDao<Permiso,Integer> {
 
-  public boolean getByParameter(String parameter, String value);
+ public List<Permiso> getByParameter(String parameter, String value, Session session) throws InstanceException;
 }

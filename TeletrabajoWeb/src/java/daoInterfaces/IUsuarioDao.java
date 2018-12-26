@@ -5,7 +5,10 @@
  */
 package daoInterfaces;
 
+import excepciones.InstanceException;
+import java.util.List;
 import modelo.Usuario;
+import org.hibernate.Session;
 
 /**
 
@@ -13,7 +16,7 @@ import modelo.Usuario;
  */
 public interface IUsuarioDao extends IGenericDao<Usuario,Integer>
 {
- public boolean getByParameter(String parameter, String value);
+  public List <Usuario> getByParameter(String parameter, String value, Session session) throws InstanceException;
   
 
 }

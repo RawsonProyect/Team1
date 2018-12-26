@@ -5,7 +5,10 @@
  */
 package daoInterfaces;
 
+import excepciones.InstanceException;
+import java.util.List;
 import modelo.Proyecto;
+import org.hibernate.Session;
 
 /**
 
@@ -13,6 +16,6 @@ import modelo.Proyecto;
  */
 public interface IProyectoDao extends IGenericDao<Proyecto,Integer>
 {
-    public boolean getByParameter(String parameter, String value);
+    public List<Proyecto> getByParameter(String parameter, String value, Session session) throws InstanceException;
     
 }
