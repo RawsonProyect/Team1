@@ -11,6 +11,7 @@ import excepciones.DuplicateInstance;
 import excepciones.InstanceException;
 import java.util.ArrayList;
 import javax.management.InstanceNotFoundException;
+import modelo.Permiso;
 import modelo.Rol;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -65,6 +66,32 @@ public class RolService implements IRolService {
             new InstanceException();
         }
         return list;
+    }
+    @Override
+    public void asignarPermisoaRol(Rol r, Permiso p) throws InstanceNotFoundException, InstanceException {
+        try {
+            if ((dao.findbyId(r.getIdRol()))!=null) {
+                throw new InstanceNotFoundException();
+            }
+            r.getPermisos().add(p);            
+            dao.save(r);
+            dao.update(r);
+        } catch (HibernateException e) {
+            throw new InstanceException();
+        }
+    }
+    @Override
+    public void desasignarPermisoaRol(Rol r, Permiso p) throws InstanceNotFoundException, InstanceException {
+        try {
+            if ((dao.findbyId(r.getIdRol()))!=null) {
+                throw new InstanceNotFoundException();
+            }
+            r.getPermisos().remove(p);            
+            dao.save(r);
+            dao.update(r);
+        } catch (HibernateException e) {
+            throw new InstanceException();
+        }
     }
 
 }
