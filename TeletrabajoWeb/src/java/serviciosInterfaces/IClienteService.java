@@ -11,12 +11,12 @@ import modelo.Proyecto;
 import modelo.Usuario;
 
 /**
-
- @author Arlen
+ *
+ * @author Arlen
  */
-public interface IClienteService
-{
- public ArrayList<Cliente>listarClientes();
+public interface IClienteService {
+
+    public ArrayList<Cliente> listarClientes();
     public Cliente obtenerClientePorID(int id);
     public Cliente insertarCliente(Cliente c);
     public void actualizarCliente(Cliente c);
@@ -24,5 +24,5 @@ public interface IClienteService
     public void asignarUsuario(Usuario u);
     public void desasignarUsuario(Usuario u);
     public void asignarProyecto(Proyecto p);
-public void desasignarProyecto(Proyecto p);  
+    public void desasignarProyecto(Proyecto p);
 }

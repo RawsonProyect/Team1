@@ -1,9 +1,9 @@
-/*
- To change this license header, choose License Headers in Project Properties.
- To change this template file, choose Tools | Templates
- and open the template in the editor.
- */
 package serviciosInterfaces;
+
+import excepciones.InstanceException;
+import java.util.ArrayList;
+import javax.management.InstanceNotFoundException;
+import modelo.Rol;
 
 /**
 
@@ -11,5 +11,8 @@ package serviciosInterfaces;
  */
 public interface IRolService
 {
-    
+    public Rol insertarRol(Rol r) throws InstanceException;
+    public void actualizarRol(Rol r) throws InstanceException;
+    public Rol obtenerRolPorId(int id) throws InstanceNotFoundException;
+    public ArrayList<Rol> getRoles() throws InstanceException;
 }
