@@ -1,7 +1,10 @@
 package daoInterfaces;
 
+import excepciones.InstanceException;
+import java.util.List;
 import modelo.RolUsuarioProyecto;
 import modelo.RolUsuarioProyectoId;
+import org.hibernate.Session;
 
 /**
  *
@@ -9,5 +12,5 @@ import modelo.RolUsuarioProyectoId;
  */
 public interface IRolUsuarioProyectoDao extends IGenericDao<RolUsuarioProyecto,RolUsuarioProyectoId> {
 
- public boolean getByParameter(String parameter, String value);
+ public List<RolUsuarioProyecto> getByParameter(String parameter, String value, Session session) throws InstanceException;
 }

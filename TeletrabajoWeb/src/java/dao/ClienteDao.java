@@ -6,8 +6,10 @@
 package dao;
 
 import daoInterfaces.IClienteDao;
+import excepciones.InstanceException;
 import java.util.List;
 import modelo.Cliente;
+import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -17,16 +19,9 @@ import org.hibernate.criterion.Restrictions;
 public class ClienteDao extends GenericDao<Cliente,Integer> implements IClienteDao
 
 {
-    @Override
-    public boolean getByParameter(String parameter,String value)
+  @Override
+    public List<Cliente> getByParameter(String parameter,String value,Session session) throws InstanceException
     {
-        List<Cliente> result = (List<Cliente>)session.createCriteria(Cliente.class).add(Restrictions.like(parameter,value)).list();
-        if(result.size() != 1)
-        {
-            return false;
-        }
-        t.commit();
-        return true;
+        return (List<Cliente>) session.createCriteria(Cliente.class).add( Restrictions.like(parameter,value)).list();
     }
-
 }

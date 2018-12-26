@@ -6,8 +6,10 @@
 package dao;
 
 import daoInterfaces.IProyectoDao;
+import excepciones.InstanceException;
 import java.util.List;
 import modelo.Proyecto;
+import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -17,14 +19,9 @@ import org.hibernate.criterion.Restrictions;
 public class ProyectoDao extends GenericDao <Proyecto,Integer> implements IProyectoDao
 {
     @Override
-    public boolean getByParameter(String parameter,String value)
+    public List<Proyecto> getByParameter(String parameter,String value,Session session) throws InstanceException
     {
-        List<Proyecto> result = (List<Proyecto>) session.createCriteria(Proyecto.class).add(Restrictions.like(parameter,value)).list();
-    if(result.size()!=1){
-        return false;
-    }
-    t.commit();
-    return true;
+       return (List<Proyecto>) session.createCriteria(Proyecto.class).add(Restrictions.like(parameter,value)).list();
     }
     
 

@@ -5,63 +5,157 @@
  */
 package servicios;
 
+import controlador.HibernateUtil;
+import dao.ClienteDao;
+import excepciones.DuplicateInstance;
+import excepciones.InstanceException;
 import java.util.ArrayList;
 import modelo.Cliente;
 import modelo.Proyecto;
 import modelo.Usuario;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import serviciosInterfaces.IClienteService;
+
+
 
 /**
 
  @author Arlen
  */
-public class ClienteService  implements IClienteService
+
+public class ClienteService implements IClienteService
 {
+  protected Session session  = HibernateUtil.getSessionFactory().getCurrentSession();
+    protected Transaction t = session.beginTransaction();
+  private ClienteDao dao= new ClienteDao();
     @Override
-    public ArrayList<Cliente> listarClientes()
+   
+    public void actualizarCliente(Cliente c) throws InstanceException,DuplicateInstance
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try
+        {
+             if((dao.getByParameter("cif",c.getCif(),session)).size() != 0 )
+            {
+                throw new DuplicateInstance();
+            }
+        }
+        catch(HibernateException e)
+        {
+            throw new InstanceException();
+        }
+    }
+
+    @Override
+    public Cliente obtenerClientePorID(int id) throws InstanceException
+    {
+        try
+        {
+            return dao.findbyId(id);
+        }
+        catch(Exception e)
+        {
+            throw new InstanceException();
+        }
     }
     @Override
-    public Cliente obtenerClientePorID(int id)
+    public ArrayList<Cliente> listarClientes() throws InstanceException
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList list = null;
+        try
+        {
+            list = (ArrayList)dao.findAll();
+        }
+        catch(HibernateException ex)
+        {
+            new InstanceException();
+        }
+        return list;
     }
     @Override
-    public Cliente insertarCliente(Cliente c)
+      
+    public void eliminarCliente(int id) throws InstanceException
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try
+        {
+            dao.remove(dao.findbyId(id));
+        }
+        catch(Exception ex)
+        {
+            new InstanceException();
+        }
     }
     @Override
-    public void actualizarCliente(Cliente c)
+    
+    public void asignarUsuario(Cliente c,Usuario u) throws InstanceException
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try
+        {
+            c.getUsuarios().add(u);
+        
+        }
+        catch(HibernateException ex)
+        {
+            new InstanceException();
+        }
     }
     @Override
-    public void eliminarCliente(int id)
+     
+    public void desasignarUsuario(Cliente c,Usuario u) throws InstanceException
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try
+        {
+            c.getUsuarios().remove(u);
+        }
+        catch(HibernateException e)
+        {
+           new InstanceException();
+        }
     }
     @Override
-    public void asignarUsuario(Usuario u)
+    public void asignarProyecto(Cliente c,Proyecto p) throws InstanceException
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         try
+        {
+            c.getProyectos().add(p);
+        }
+        catch(HibernateException e)
+        {
+           new InstanceException();
+        }
+       
     }
     @Override
-    public void desasignarUsuario(Usuario u)
+    
+    public void desasignarProyecto(Cliente c,Proyecto p) throws InstanceException
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         try
+        {
+            c.getProyectos().remove(p);
+        }
+        catch(HibernateException e)
+        {
+           new InstanceException();
+        }
     }
     @Override
-    public void asignarProyecto(Proyecto p)
+    
+    public void insertarCliente(Cliente c) throws InstanceException,DuplicateInstance
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    @Override
-    public void desasignarProyecto(Proyecto p)
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try
+        {
+            if((dao.getByParameter("cif",c.getCif(),session)).size() != 0 ||  dao.exist(c))
+            {
+                throw new excepciones.DuplicateInstance();
+            }
+            dao.save(c);
+        }
+        catch(HibernateException e)
+        {
+            new excepciones.InstanceException();
+        }
     }
     
-    
+
 }

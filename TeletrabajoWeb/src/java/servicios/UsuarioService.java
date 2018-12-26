@@ -5,13 +5,16 @@
  */
 package servicios;
 
-import serviciosInterfaces.IUsuarioService;
 import controlador.HibernateUtil;
 import dao.UsuarioDao;
+import excepciones.DuplicateInstance;
+import excepciones.InstanceException;
 import java.util.ArrayList;
 import modelo.Usuario;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import serviciosInterfaces.IUsuarioService;
 
 /**
 
@@ -19,28 +22,77 @@ import org.hibernate.Transaction;
  */
 public class UsuarioService implements IUsuarioService
 {
- protected Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+    protected Session session  = HibernateUtil.getSessionFactory().getCurrentSession();
     protected Transaction t = session.beginTransaction();
-    UsuarioDao dao= new UsuarioDao();
+    UsuarioDao dao = new UsuarioDao();
     @Override
-    public Usuario insertarUsuario(Usuario u)
+    public void insertarUsuario(Usuario u) throws DuplicateInstance,InstanceException
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try
+        {
+            if((dao.getByParameter("login",u.getLogin(),session)).size()!=0||(dao.getByParameter("email",u.getEmail(),session).size()!=0||dao.exist(u))){
+               throw  new DuplicateInstance(); 
+            }
+            
+            dao.save(u);
+            
+            
+        }
+        catch(HibernateException e)
+        {
+           new InstanceException();
+                   
+        }
+        
     }
     @Override
-    public void actualizar(Usuario u)
+    public void actualizar(Usuario u) throws InstanceException, DuplicateInstance
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       try{
+             if((dao.getByParameter("login",u.getLogin(),session)).size()!=0||(dao.getByParameter("email",u.getEmail(),session).size()!=0)){
+               throw  new DuplicateInstance(); 
+            }
+            
+            
+        }
+        catch(HibernateException e)
+        {
+           throw new InstanceException();
+        }
+       
+    }
+    
+    
+    
+    
+    @Override
+    public Usuario obtenerPorId(int id)  throws InstanceException
+    {
+     
+        
+        
+        try
+        {
+            return   dao.findbyId(id);
+        }
+        catch(Exception e)
+        {
+          throw new InstanceException();
+        }
+        
+            
+     
     }
     @Override
-    public Usuario obtenerPorId(int id)
+    public ArrayList<Usuario> getUsuarios()  throws InstanceException
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList list=null;
+        try{
+       list=(ArrayList)dao.findAll();
+        }catch(HibernateException ex){
+            new InstanceException();
+        }
+        return list;
     }
-    @Override
-    public ArrayList<Usuario> getUsuarios()
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-   
+
 }

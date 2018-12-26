@@ -6,8 +6,10 @@
 package dao;
 
 import daoInterfaces.IUsuarioDao;
+import excepciones.InstanceException;
 import java.util.List;
 import modelo.Usuario;
+import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -18,13 +20,8 @@ public class UsuarioDao extends GenericDao <Usuario,Integer> implements IUsuario
 {
 
     
-    public boolean getByParameter(String parameter, String value) {
-    List<Usuario> result = (List<Usuario>) session.createCriteria(Usuario.class).add(Restrictions.like(parameter,value)).list();
-    if(result.size()!=1){
-        return false;
-    }
-    t.commit();
-    return true;
+     public List<Usuario> getByParameter(String parameter, String value, Session session) throws InstanceException{
+    return (List<Usuario>) session.createCriteria(Usuario.class).add(Restrictions.like(parameter,value)).list();
     }
  
 }  

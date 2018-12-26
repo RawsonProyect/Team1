@@ -5,7 +5,10 @@
  */
 package daoInterfaces;
 
+import excepciones.InstanceException;
+import java.util.List;
 import modelo.Tipopermiso;
+import org.hibernate.Session;
 
 /**
 
@@ -13,7 +16,7 @@ import modelo.Tipopermiso;
  */
 public interface ITipoPermisoDao extends IGenericDao<Tipopermiso,Integer>
 {
- public boolean getByParameter(String parameter, String value);
+ public List<Tipopermiso> getByParameter(String parameter, String value, Session session) throws InstanceException;
     
     
 }

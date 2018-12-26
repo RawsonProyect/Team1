@@ -1,24 +1,24 @@
 package dao;
 
+import daoInterfaces.IPermisoDao;
+import excepciones.InstanceException;
 import java.util.List;
 import modelo.Permiso;
+import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
-import daoInterfaces.IPermisoDao;
 
 /**
- *
- * @author Arlen
+
+ @author Arlen
  */
-public class PermisoDao extends GenericDao<Permiso, Integer> implements IPermisoDao {
+public class PermisoDao extends GenericDao<Permiso,Integer> implements IPermisoDao
+{
 
     @Override
-    public boolean getByParameter(String parameter, String value) {
-        List<Permiso> result = (List<Permiso>) session.createCriteria(Permiso.class).add(Restrictions.like(parameter, value)).list();
-        if (result.size() != 1) {
-            return false;
-        }
-        t.commit();
-        return true;
+    public List<Permiso> getByParameter(String parameter,String value,Session session) throws InstanceException
+    {
+        List<Permiso> result = (List<Permiso>)session.createCriteria(Permiso.class).add(Restrictions.like(parameter,value)).list();
+        return (List<Permiso>)session.createCriteria(Permiso.class).add(Restrictions.like(parameter,value)).list();
     }
 
 }

@@ -6,8 +6,10 @@
 package dao;
 
 import daoInterfaces.ITipoPermisoDao;
+import excepciones.InstanceException;
 import java.util.List;
 import modelo.Tipopermiso;
+import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -18,16 +20,10 @@ public class TipoPermisoDao  extends GenericDao <Tipopermiso,Integer> implements
         
 {
     @Override
-    public boolean getByParameter(String parameter,String value)
+    public List<Tipopermiso> getByParameter(String parameter,String value,Session session) throws InstanceException
     {
-       
-          List <Tipopermiso> result = (List<Tipopermiso>) session.createCriteria(Tipopermiso.class).add( Restrictions.like(parameter,value)).list();
-    if(result.size()!=1){
-        return false;
+        return (List<Tipopermiso>) session.createCriteria(Tipopermiso.class).add(Restrictions.like(parameter,value)).list();
     }
-    t.commit();
-    return true;
-    }
-    
+ 
   
 }

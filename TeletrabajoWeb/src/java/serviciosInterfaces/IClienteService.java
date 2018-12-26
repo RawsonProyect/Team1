@@ -5,6 +5,8 @@
  */
 package serviciosInterfaces;
 
+import excepciones.DuplicateInstance;
+import excepciones.InstanceException;
 import java.util.ArrayList;
 import modelo.Cliente;
 import modelo.Proyecto;
@@ -16,13 +18,13 @@ import modelo.Usuario;
  */
 public interface IClienteService {
 
-    public ArrayList<Cliente> listarClientes();
-    public Cliente obtenerClientePorID(int id);
-    public Cliente insertarCliente(Cliente c);
-    public void actualizarCliente(Cliente c);
-    public void eliminarCliente(int id);
-    public void asignarUsuario(Usuario u);
-    public void desasignarUsuario(Usuario u);
-    public void asignarProyecto(Proyecto p);
-    public void desasignarProyecto(Proyecto p);
+    public ArrayList<Cliente> listarClientes()throws InstanceException;
+    public Cliente obtenerClientePorID(int id)throws InstanceException;
+    public void insertarCliente(Cliente c) throws DuplicateInstance,InstanceException;
+    public void actualizarCliente(Cliente c)throws DuplicateInstance,InstanceException;
+    public void eliminarCliente(int id)throws InstanceException;
+    public void asignarUsuario(Cliente c,Usuario u)throws InstanceException;
+    public void desasignarUsuario(Cliente c,Usuario u)throws InstanceException;
+    public void asignarProyecto(Cliente c,Proyecto p)throws InstanceException;
+    public void desasignarProyecto(Cliente c,Proyecto p)throws InstanceException;
 }

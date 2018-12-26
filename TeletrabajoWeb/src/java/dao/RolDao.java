@@ -6,8 +6,10 @@
 package dao;
 
 import daoInterfaces.IRolDao;
+import excepciones.InstanceException;
 import java.util.List;
 import modelo.Rol;
+import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -17,15 +19,10 @@ import org.hibernate.criterion.Restrictions;
 public class RolDao extends GenericDao <Rol,Integer> implements IRolDao
 {
     @Override
-    public boolean getByParameter(String parameter,String value)
+    public List<Rol> getByParameter(String parameter,String value,Session session) throws InstanceException
     {
-        List <Rol> result = (List<Rol>) session.createCriteria(Rol.class).add( Restrictions.like(parameter,value)).list();
-    if(result.size()!=1){
-        return false;
+        return (List<Rol>) session.createCriteria(Rol.class).add( Restrictions.like(parameter,value)).list();
     }
-    t.commit();
-    return true;
-    }
-    
+   
     
 }

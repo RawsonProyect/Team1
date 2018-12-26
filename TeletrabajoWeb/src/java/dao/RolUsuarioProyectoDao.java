@@ -6,9 +6,11 @@
 package dao;
 
 import daoInterfaces.IRolUsuarioProyectoDao;
+import excepciones.InstanceException;
 import java.util.List;
 import modelo.RolUsuarioProyecto;
 import modelo.RolUsuarioProyectoId;
+import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -19,15 +21,9 @@ public class RolUsuarioProyectoDao extends GenericDao<RolUsuarioProyecto,RolUsua
 
 {
     @Override
-    public boolean getByParameter(String parameter,String value)
+    public List<RolUsuarioProyecto> getByParameter(String parameter,String value,Session session) throws InstanceException
     {
-        List<RolUsuarioProyecto> result = (List<RolUsuarioProyecto>)session.createCriteria(RolUsuarioProyecto.class).add(Restrictions.like(parameter,value)).list();
-        if(result.size() != 1)
-        {
-            return false;
-        }
-        t.commit();
-        return true;
+        return (List<RolUsuarioProyecto>)session.createCriteria(RolUsuarioProyecto.class).add(Restrictions.like(parameter,value)).list();
     }
 
 }
