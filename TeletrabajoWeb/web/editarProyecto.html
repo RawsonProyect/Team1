@@ -1,0 +1,291 @@
+
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/style.css">
+		<link href="_componentesExternos/datatables/media/css/dataTables.bootstrap.min.css" rel='stylesheet' />	
+		<link href="_componentesExternos/datatables.bootstrap.css" rel="stylesheet"/>
+		<link id="bsdp-css" href="bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
+		
+
+		<title>Rawson BPO</title>
+		
+
+		<!-- Bootstrap CSS CDN -->
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+		<script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+		
+		<script type="text/javascript" src="_componentesExternos/datatables/media/js/jquery.dataTables.min.js"></script>
+		<script type="text/javascript" src="_componentesExternos/dataTables.bootstrap.js"></script>
+		<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+		<!-- Isolated Version of Bootstrap, not needed if your site already uses Bootstrap -->
+		<link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+
+		<!-- Bootstrap Date-Picker Plugin -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+		<!-- Our Custom CSS -->
+	   
+		<link rel="shortcut icon" href="img/favicon.ico">
+		<!-- Font Awesome JS -->
+		 
+	
+		<script type="text/javascript">
+		$(function($){
+    $.datepicker.regional['es'] = {
+        closeText: 'Cerrar',
+        prevText: '<Ant',
+        nextText: 'Sig>',
+        currentText: 'Hoy',
+        monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+        dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+        dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+        dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+        weekHeader: 'Sm',
+        dateFormat: 'dd/mm/yy',
+        firstDay: 1,
+        isRTL: false,
+        showMonthAfterYear: false,
+        yearSuffix: ''
+    };
+    $.datepicker.setDefaults($.datepicker.regional['es']);
+});
+		</script>
+		
+	</head>
+
+    <link rel="shortcut icon" href="img/favicon.ico">
+<body>
+
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+               <div class="sidebar-header">
+                    <img src="img/LOGO-RAWSONBPO-9.png" height="70"  alt=""/>
+                   
+                </div>
+
+                <ul class="list-unstyled components">
+                  
+                      <li>
+                       <a href="#tareaSubmenu" data-toggle="collapse" aria-expanded="false">
+                            <i class="glyphicon glyphicon-paperclip"></i>
+                            Archivos
+                        </a>
+                            <ul class="collapse list-unstyled" id="tareaSubmenu">
+                            <li><a href="archivoProyecto.html">Ver Archivos</a></li>
+                            <li><a href="#">Editar Archivos</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li>
+                       <a href="#requisitosSubmenu" data-toggle="collapse" aria-expanded="false">
+                            <i class="glyphicon glyphicon-briefcase"></i>
+                            Requisitos
+                        </a>
+                        <ul class="collapse list-unstyled" id="requisitosSubmenu">
+                            <li><a href="#">Ver Requisitos</a></li>
+                            <li><a href="#">Editar Requisitos</a></li>
+                            
+                        </ul>
+                    </li>
+                    
+                    <li>
+                      
+                        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">
+                            <i class="glyphicon glyphicon-duplicate"></i>
+                            Proyectos
+                        </a>
+                        <ul class="collapse list-unstyled" id="pageSubmenu">
+                            <li ><a  style="pointer-events: none; cursor: default;" href="editarProyecto.html">Editar Proyecto</a></li>
+                            <li><a href="#">Eliminar Proyecto</a></li>
+                        </ul>
+                    </li>
+         
+                  
+                   
+                </ul>
+                <!--
+                <ul class="list-unstyled CTAs">
+                   
+                  <li><a href="#" class="article"><i class="glyphicon glyphicon-earphone"></i>Llamar a Chicho</a></li>
+              </ul>
+          -->
+            </nav>
+
+
+        <!-- Page Content  -->
+        <div id="content">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="glyphicon glyphicon-list"></i>
+                    </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-align-justify"></i>
+                    </button>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="listaProyectos.html">Proyectos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="chat.html">Chat</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Cuenta</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Salir</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+<section>
+ <div class="col-md-8 order-md-1">
+		 
+<center><h4 class="title">Editar Proyecto</h4></center>
+
+         
+
+    
+          
+          <form class="needs-validation" novalidate>
+            <div class="row">
+              <div class="col">
+                 <label for="Proy_Name">Nombre Proyecto:</label>
+                <input type="text" class="form-control" id="Proy_Name" placeholder="" value="" required>
+                <div class="invalid-feedback">
+                  Nombre de Proyecto requerido.
+                </div>
+	          </div>
+              <div class="col" >
+			   <label for="Proy_Name">Nombre Cliente:</label>
+				 <select class="custom-select custom-select-lg mb-3">
+				  <option value="0">-</option>
+				  <option value="1">Cliente 1</option>
+				  <option value="2">Cliente 2</option>
+				  <option value="3">Cliente 3</option>
+				</select>
+              </div>
+            </div>
+
+         
+        <div class="row">
+				<div class="col">
+					<label for="FechaIni">Fecha de inicio Prevista:</label>
+					<div class="input-group date"data-provide="datepicker">
+				
+						<input type="text" id ="FechaIniPr"class="form-control">
+						<div class="input-group-addon">
+							<span class="glyphicon glyphicon-th"></span>
+						</div>
+					</div>
+               
+				
+				</div>
+				<div class="col">
+					<label for="FechaFin">Fecha de fin Prevista:</label>
+					<div class="input-group date" data-provide="datepicker">
+				
+						<input type="text" id ="FechaFinPr"class="form-control">
+						<div class="input-group-addon">
+							<span class="glyphicon glyphicon-th"></span>
+						</div>
+					</div>
+               
+				
+				</div>
+			</div>		 
+			<div class="row">
+				<div class="col">
+					<label for="FechaIni">Fecha de inicio Real:</label>
+					<div class="input-group date" id ="datapicker"data-provide="datepicker">
+				
+						<input type="text" id ="FechaIni"class="form-control">
+						<div class="input-group-addon">
+							<span class="glyphicon glyphicon-th"></span>
+						</div>
+					</div>
+               
+				
+				</div>
+				<div class="col">
+					<label for="FechaFin">Fecha de fin Real:</label>
+					<div class="input-group date" data-provide="datepicker">
+				
+						<input type="text" id ="FechaFin"class="form-control">
+						<div class="input-group-addon">
+							<span class="glyphicon glyphicon-th"></span>
+						</div>
+					</div>
+               
+				
+				</div>
+			</div>
+
+           
+	
+		   <center><h4 class="title">Requisitos</h4></center>
+		
+	       <div class="table-responsive-sm">
+			<table class="table table-hover">
+			  <thead class="bg-light">
+				<tr> 
+				  <th>Id</th>
+				  <th>Fecha</th>
+				  <th>Incidencia</th>
+				  <th>Requisito</th>
+				  <th>Estado</th>
+				  <th>Descripción</th>
+				  <th>Ruta</th>
+				
+				  
+				</tr>
+			  </thead>
+			  <tbody >
+				<tr id="tabP" class ="tabla_color">
+				  <td></td>
+			
+			
+				 
+				</tr>
+
+			  </tbody>
+			</table>
+			<center>
+			<br>
+			<br>
+			<br>
+			<div class="btn-group" role="group" aria-label="Basic example">
+			  <button type="button" class=" boton btn btn-secondary">Guardar</button>
+			  <button type="button" class="btn btn-secondary">Cancelar</button>
+			  <button type="button" class="btn btn-secondary">Finalizar</button>
+		    </div>
+			</center>
+          </form>
+        </div>
+  </section>  
+
+       
+</div>
+	
+
+</body>
+
+</html>
