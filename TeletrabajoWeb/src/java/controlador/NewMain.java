@@ -5,7 +5,12 @@
  */
 package controlador;
 
-import org.hibernate.Session;
+import excepciones.DuplicateInstance;
+import excepciones.InstanceException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import modelo.Usuario;
+import servicios.UsuarioService;
 
 /**
 
@@ -19,9 +24,20 @@ public class NewMain
      */
     public static void main(String[] args)
     {
-       Session s = HibernateUtil.getSessionFactory().getCurrentSession();
-       s.beginTransaction();
-       
+    
+       UsuarioService user= new UsuarioService();
+        try
+        {
+            user.insertarUsuario(new Usuario("pepito","asa","sas","ssa","ssdd"));
+        }
+        catch(DuplicateInstance ex)
+        {
+            Logger.getLogger(NewMain.class.getName()).log(Level.SEVERE,null,ex);
+        }
+        catch(InstanceException ex)
+        {
+            Logger.getLogger(NewMain.class.getName()).log(Level.SEVERE,null,ex);
+        }
         
         
         

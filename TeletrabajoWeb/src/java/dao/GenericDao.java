@@ -14,7 +14,6 @@ import java.util.List;
 import javax.management.InstanceNotFoundException;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
@@ -26,7 +25,7 @@ public class GenericDao<E, PK extends Serializable> implements IGenericDao<E, PK
 
     private Class<E> entityClass;
     protected Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-    protected Transaction t = session.beginTransaction();
+   // protected Transaction t = session.beginTransaction();
 
     public GenericDao() {
         entityClass = (Class<E>) ((ParameterizedType) getClass()
@@ -40,7 +39,7 @@ public class GenericDao<E, PK extends Serializable> implements IGenericDao<E, PK
 
         try{
         int id = (int) session.save(entity);
-        t.commit();
+       
         }catch(HibernateException e){
             throw new HibernateException(e);
         }
@@ -51,7 +50,7 @@ public class GenericDao<E, PK extends Serializable> implements IGenericDao<E, PK
     public void update(Object entity) {
         try{
              session.update(entity);
-        t.commit();
+      
         }catch(HibernateException e){
             throw new HibernateException(e);
         }
@@ -79,7 +78,7 @@ public class GenericDao<E, PK extends Serializable> implements IGenericDao<E, PK
     @Override
     public void remove(E entity) {
         session.delete(entity);
-        t.commit();
+      
 
     }
 
